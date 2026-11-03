@@ -79,6 +79,10 @@
       padding-top: 16px;
       border-top: 1px solid var(--rule);
     }
+    h2, h3 { scroll-margin-top: 16px; }
+    .outline { margin: 0 0 8px; padding-left: 1.4em; font-size: 15px; scroll-margin-top: 16px; }
+    .outline li { margin: 0 0 4px; }
+    .back { margin: 4px 0 0; font-size: 15px; }
     p { margin: 0 0 16px; }
 
     .pubs { list-style: none; margin: 0; padding: 0; }
@@ -182,7 +186,12 @@
 
     <section aria-labelledby="pubs">
       <h2 id="pubs">Publications</h2>
-      <h3>University of Pennsylvania</h3>
+      <ol class="outline" id="outline">
+        <li><a href="#upenn">University of Pennsylvania: Domain Randomization theory for LQR</a></li>
+        <li><a href="#utokyo">University of Tokyo: Autonomous Drone Control</a></li>
+        <li><a href="#extra">Extracurricular: Autonomous Car Racing</a></li>
+      </ol>
+      <h3 id="upenn">University of Pennsylvania</h3>
       <ol class="pubs" reversed>
         <li>
           <p class="pub-title">Robust in Training, Adaptable at Deployment: Lessons from Domain-Randomized LQR</p>
@@ -227,7 +236,9 @@
         </li>
       </ol>
 
-      <h3>University of Tokyo</h3>
+      <p class="back"><a href="#outline">Back to outline</a></p>
+
+      <h3 id="utokyo">University of Tokyo</h3>
       <div class="videos">
         <div>
           <ol class="pubs video-paper">
@@ -282,6 +293,7 @@
           <p class="pub-links"><a href="https://www.sciencedirect.com/science/article/pii/S2405896322025502">ScienceDirect</a></p>
         </li>
       </ol>
+      <p class="back"><a href="#outline">Back to outline</a></p>
     </section>
 
     <section aria-labelledby="extra">
@@ -294,6 +306,7 @@
           F1TENTH (RoboRacer) Autonomous Racing
         </video>
       </figure>
+      <p class="back"><a href="#outline">Back to outline</a></p>
     </section>
 
     <footer>
