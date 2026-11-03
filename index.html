@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Security: this page runs no JavaScript and loads nothing except Google Fonts. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'none'; object-src 'none'">
+  <!-- Security: this page runs no JavaScript of its own. It loads only Google Fonts
+       and YouTube's privacy-enhanced (no-cookie) video player. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; base-uri 'self'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Tesshu Fujinami</title>
   <meta name="description" content="Tesshu Fujinami, University of Pennsylvania. Research on learning for control, domain randomization and sim-to-real transfer.">
@@ -66,6 +67,11 @@
     .traces .randomized path { fill: none; stroke: var(--trace); stroke-width: 1; opacity: 0.35; vector-effect: non-scaling-stroke; }
     .traces .nominal { fill: none; stroke: var(--signal); stroke-width: 2; vector-effect: non-scaling-stroke; }
     figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .epigraph { margin: 40px 0 0; }
+    .epigraph + figure { margin-top: 24px; }
+    .epigraph blockquote { margin: 0; }
+    .epigraph blockquote p { margin: 0; font: 400 22px/1.35 var(--serif); }
+    .epigraph cite { font-style: normal; }
 
     h2 {
       font: 500 24px/1.3 var(--serif);
@@ -78,10 +84,37 @@
     .pubs { list-style: none; margin: 0; padding: 0; }
     .pubs li { margin: 0 0 28px; }
     .pub-title { font: 500 19px/1.35 var(--serif); margin: 0 0 4px; }
-    .pub-authors, .pub-venue { margin: 0; font-size: 15px; color: var(--muted); }
+    .pub-authors, .pub-venue, .pub-note { margin: 0; font-size: 15px; color: var(--muted); }
+    .pub-note { margin-top: 2px; color: var(--ink); }
     .pub-authors strong { color: var(--ink); font-weight: 500; }
     .pub-venue em { font-style: normal; color: var(--ink); }
     .pub-links { margin: 6px 0 0; font-size: 15px; display: flex; gap: 16px; }
+    .pub-fig { margin: 14px 0 0; }
+    .pub-fig img { display: block; width: 50%; height: auto; margin-inline: auto; background: #fff; border-radius: 4px; }
+    .pub-fig figcaption { font-size: 16px; line-height: 1.5; }
+
+    h3 {
+      font: 500 15px/1.4 var(--sans);
+      color: var(--muted);
+      margin: 32px 0 16px;
+    }
+    h2 + h3 { margin-top: 0; }
+
+    .videos { display: grid; gap: 28px; margin: 0 0 36px; }
+    .video-paper li { margin: 0; }
+    .video { margin: 14px 0 0; }
+    .clip { width: 50%; margin: 14px auto 0; }
+    .clip video { display: block; width: 100%; height: auto; border-radius: 4px; background: #000; }
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video figcaption { font-size: 15px; margin-top: 8px; }
+    .video figcaption span { display: block; color: var(--ink); font: 500 17px/1.35 var(--serif); }
 
     footer { margin-top: 64px; font-size: 13px; color: var(--muted); }
 
@@ -96,17 +129,22 @@
     <header>
       <h1>Tesshu Fujinami</h1>
       <!-- EDIT: add your title, e.g. "PhD student", and advisors if you like. -->
-      <p class="role">Electrical and Systems Engineering, University of Pennsylvania</p>
+      <p class="role">University of Pennsylvania, PhD Student</p>
       <ul class="links">
-        <li><a href="mailto:ftesshu@seas.upenn.edu">ftesshu@seas.upenn.edu</a></li>
-        <li><a href="https://arxiv.org/search/?searchtype=author&amp;query=Fujinami%2C+Tesshu">arXiv</a></li>
+        <li><a href="mailto:ftesshu@engineering.upenn.edu">ftesshu@engineering.upenn.edu</a></li>
+        <li><a href="https://scholar.google.com/citations?user=h20PWN8AAAAJ&amp;hl=ja">Google Scholar</a></li>
+        <li><a href="https://github.com/Tesshuuuu">GitHub</a></li>
         <!-- EDIT: uncomment and fill in the ones you want.
-        <li><a href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a></li>
-        <li><a href="https://github.com/YOUR_USERNAME">GitHub</a></li>
-        <li><a href="cv.pdf">CV</a></li>
-        -->
+        <!-- <li><a href="cv.pdf">CV</a></li> -->
       </ul>
     </header>
+
+    <figure class="epigraph">
+      <blockquote cite="https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD498.html">
+        <p>Simplicity is prerequisite for reliability.</p>
+      </blockquote>
+      <figcaption>Edsger W. Dijkstra, How do we tell truths that might hurt?, 1975</figcaption>
+    </figure>
 
     <figure>
       <svg class="traces" viewBox="0 0 680 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -131,37 +169,131 @@
         </g>
         <path class="nominal" d="M0 17.0 8 22.5 15 30.5 23 40.3 30 51.0 38 61.9 45 72.3 53 81.5 60 89.1 68 94.9 76 98.7 83 100.6 91 100.6 98 99.1 106 96.2 113 92.4 121 87.9 128 83.3 136 78.6 144 74.4 151 70.7 159 67.8 166 65.6 174 64.4 181 63.9 189 64.2 196 65.1 204 66.6 212 68.3 219 70.3 227 72.3 234 74.3 242 76.0 249 77.4 257 78.6 264 79.3 272 79.7 280 79.8 287 79.5 295 79.0 302 78.3 310 77.5 317 76.6 325 75.8 332 75.0 340 74.3 348 73.7 355 73.3 363 73.1 370 73.0 378 73.0 385 73.1 393 73.4 400 73.7 408 74.1 416 74.5 423 74.8 431 75.1 438 75.4 446 75.6 453 75.8 461 75.9 468 75.9 476 75.8 484 75.8 491 75.6 499 75.5 506 75.3 514 75.2 521 75.0 529 74.9 536 74.8 544 74.7 552 74.6 559 74.6 567 74.6 574 74.7 582 74.7 589 74.8 597 74.8 604 74.9 612 75.0 620 75.0 627 75.1 635 75.1 642 75.1 650 75.2 657 75.2 665 75.2 672 75.1 680 75.1"/>
       </svg>
-      <figcaption>One controller, many randomized systems.</figcaption>
+      <figcaption>One controller, many systems.</figcaption>
     </figure>
 
     <section aria-labelledby="about">
       <h2 id="about">Research</h2>
-      <p>I work on learning for control. Much of my research asks why domain randomization, training a controller across a distribution of simulated systems, transfers so well from simulation to the real world, and when it can be trusted.</p>
-      <p>I study this in the linear quadratic regulator, where the questions can be answered precisely: how many samples domain randomization needs compared with certainty equivalence and robust control, when policy gradient methods provably find the domain-randomized optimum, and how controllers with memory make it possible to stabilize systems that no single static feedback law can.</p>
+      <p>My goal is to bridge the gap between robot learning in practice and theory of learning for control, toward control systems that are reliable, robust, and adaptable. My interests lie at the intersection of control theory, reinforcement learning, and policy optimization.</p>
+      <!-- <p>I work on learning for control. Much of my research asks why domain randomization, training a controller across a distribution of simulated systems, transfers so well from simulation to the real world, and when it can be trusted.</p> -->
+      <!-- <p>I study this in the linear quadratic regulator, where the questions can be answered precisely: how many samples domain randomization needs compared with certainty equivalence and robust control, when policy gradient methods provably find the domain-randomized optimum, and how controllers with memory make it possible to stabilize systems that no single static feedback law can.</p> -->
+      <!-- <p>Before Penn, I was at the University of Tokyo, where I worked on vision-based control for robots and drone networks: pursuing moving targets with Gaussian process models of their motion, and keeping camera-equipped robots visually safe with control barrier functions.</p> -->
     </section>
 
     <section aria-labelledby="pubs">
       <h2 id="pubs">Publications</h2>
+      <h3>University of Pennsylvania</h3>
       <ol class="pubs" reversed>
         <li>
-          <p class="pub-title">Policy Gradient over History-Dependent Policy Classes for LQR with Domain Randomization</p>
-          <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Bruce D. Lee, Anastasios Tsiamis, Nikolai Matni, George J. Pappas</p>
-          <p class="pub-venue"><em>Preprint</em>, 2026</p>
-          <p class="pub-links"><a href="https://arxiv.org/abs/2609.16300">arXiv</a></p>
+          <p class="pub-title">Robust in Training, Adaptable at Deployment: Lessons from Domain-Randomized LQR</p>
+          <p class="pub-authors"><strong>Tesshu Fujinami</strong>, George J. Pappas</p>
+          <p class="pub-venue"><em>Sim2Real2Field Workshop, Conference on Robot Learning (CoRL)</em>, 2026</p>
+          <!-- <p class="pub-links"><a href="https://arxiv.org/abs/2609.16300">arXiv</a></p> -->
+          <figure class="pub-fig">
+            <img src="figures/Interplay%20of%20Adaptation%20and%20Forgetting.png" width="2912" height="2184" alt="Triangle relating domain randomization, adaptation, and forgetting.">
+            <figcaption>Broader randomization speeds adaptation and reduces forgetting, but makes optimization harder, and faster adaptation itself trades off against forgetting.</figcaption>
+          </figure>
         </li>
         <li>
           <p class="pub-title">Policy Gradient for LQR with Domain Randomization</p>
           <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Bruce D. Lee, Nikolai Matni, George J. Pappas</p>
           <p class="pub-venue"><em>IEEE Conference on Decision and Control (CDC)</em>, 2025</p>
-          <p class="pub-links"><a href="https://arxiv.org/abs/2503.24371">arXiv</a></p>
+          <p class="pub-links"><a href="https://doi.org/10.1109/CDC57313.2025.11312642">IEEE</a><a href="https://arxiv.org/abs/2503.24371">arXiv</a></p>
+          <figure class="pub-fig">
+            <img src="figures/stabilization_Jdr_100.png" width="1920" height="1440" alt="Domain-randomized LQR cost versus iterations for 10, 20, and 500 sampled systems.">
+            <figcaption>Policy gradient provably converges on the domain-randomized LQR objective. Sampling more systems (larger M) brings the solution closer to the true randomized cost.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <p class="pub-title">Policy Gradient over History-Dependent Policy Classes for LQR with Domain Randomization</p>
+          <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Bruce D. Lee, Anastasios Tsiamis, Nikolai Matni, George J. Pappas</p>
+          <p class="pub-venue"><em>IEEE Conference on Decision and Control (CDC)</em>, 2026</p>
+          <p class="pub-links"><a href="https://arxiv.org/abs/2609.16300">arXiv</a></p>
+          <figure class="pub-fig">
+            <img src="figures/fir_lqr_pg_progressive_AB_2d_replotted_0825.png" width="1571" height="1721" alt="LQR cost, controller parameters, and discount factor across policy-gradient iterations, with phase boundaries.">
+            <figcaption>Growing the controller’s memory one phase at a time, while annealing the discount factor to 1, lets policy gradient stabilize system collections that no static feedback gain can.</figcaption>
+          </figure>
         </li>
         <li>
           <p class="pub-title">Domain Randomization is Sample Efficient for Linear Quadratic Control</p>
           <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Bruce D. Lee, Nikolai Matni, George J. Pappas</p>
           <p class="pub-venue"><em>Learning for Dynamics and Control Conference (L4DC)</em>, 2025</p>
+          <p class="pub-note"><strong>Oral presentation</strong> (16/120)</p>
           <p class="pub-links"><a href="https://proceedings.mlr.press/v283/fujinami25a.html">PMLR</a><a href="https://arxiv.org/abs/2502.12310">arXiv</a></p>
+          <figure class="pub-fig">
+            <img src="figures/domain_randomization.png" width="1920" height="1080" alt="Control cost versus amount of data for robust control, domain randomization, and certainty equivalence.">
+            <figcaption>With little data, domain randomization beats certainty equivalence. As data grows, it matches certainty equivalence’s optimal rate, while robust control stays safe but becomes conservative.</figcaption>
+          </figure>
         </li>
       </ol>
+
+      <h3>University of Tokyo</h3>
+      <div class="videos">
+        <div>
+          <ol class="pubs video-paper">
+            <li>
+              <p class="pub-title">Gaussian Process-based Visual Pursuit Control with Automatic Gain Tuning</p>
+              <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Junya Yamauchi, Marco Omainska, Masayuki Fujita</p>
+              <p class="pub-venue"><em>IEEE Conference on Control Technology and Applications (CCTA)</em>, 2022</p>
+              <p class="pub-links"><a href="https://doi.org/10.1109/CCTA49430.2022.9966033">IEEE</a></p>
+              <figure class="video">
+                <div class="video-frame">
+                  <iframe src="https://www.youtube-nocookie.com/embed/RQiFLLpMQHw" title="Gaussian Process-based Visual Pursuit Control with Automatic Gain Tuning" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </figure>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <ol class="pubs video-paper">
+            <li>
+              <p class="pub-title">A Control Barrier Function Approach for Observer-based Visually Safe Pursuit Control with Spherical Obstacles</p>
+              <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Junya Yamauchi, Riku Funada, Masayuki Fujita</p>
+              <p class="pub-venue"><em>IFAC World Congress</em>, 2023</p>
+              <p class="pub-links"><a href="https://www.sciencedirect.com/science/article/pii/S240589632301128X">ScienceDirect</a></p>
+              <figure class="video">
+                <div class="video-frame">
+                  <iframe src="https://www.youtube-nocookie.com/embed/CtxdSg11K5U" title="A CBF Approach for Observer-based Visually Safe Pursuit Control with Spherical Obstacles" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <ol class="pubs" reversed>
+        <li>
+          <p class="pub-title">Visual Pursuit with Switched Motion Estimation and Rigid Body Gaussian Processes</p>
+          <p class="pub-authors">Marco Omainska, Junya Yamauchi, <strong>Tesshu Fujinami</strong>, Masayuki Fujita</p>
+          <p class="pub-venue"><em>Transactions of the Institute of Systems, Control and Information Engineers</em>, 2023</p>
+          <p class="pub-note"><strong>Best paper award</strong></p>
+          <p class="pub-links"><a href="https://doi.org/10.5687/iscie.36.327">J-STAGE</a></p>
+        </li>
+        <li>
+          <p class="pub-title">Visual Safety of Robot Networks based on Control Barrier Functions with Spherical Obstacles</p>
+          <p class="pub-authors">Junya Yamauchi, Reita Maeno, <strong>Tesshu Fujinami</strong>, Marco Omainska, Masayuki Fujita</p>
+          <p class="pub-venue"><em>SICE Annual Conference</em>, 2023</p>
+          <p class="pub-links"><a href="https://doi.org/10.23919/SICE59929.2023.10354152">IEEE</a></p>
+        </li>
+        <li>
+          <p class="pub-title">Distributed Gaussian Process Based Cooperative Visual Pursuit Control for Drone Networks</p>
+          <p class="pub-authors">Makoto Saito, Junya Yamauchi, <strong>Tesshu Fujinami</strong>, Marco Omainska, Masayuki Fujita</p>
+          <p class="pub-venue"><em>IFAC Symposium on Mechatronic Systems</em>, 2022</p>
+          <p class="pub-links"><a href="https://www.sciencedirect.com/science/article/pii/S2405896322025502">ScienceDirect</a></p>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="extra">
+      <h2 id="extra">Extracurricular</h2>
+      <p class="pub-title">F1TENTH (RoboRacer) Autonomous Racing</p>
+      <p class="pub-authors"><strong>Tesshu Fujinami</strong>, Henry Huang, Taiki Nakano, Makoto Saito</p>
+      <p class="pub-venue">5th place at Autonomous Grand Prix in ICRA 2024</p>
+      <figure class="video clip">
+        <video controls playsinline preload="metadata" src="figures/f1tenth-icra-2024.mp4">
+          F1TENTH (RoboRacer) Autonomous Racing
+        </video>
+      </figure>
     </section>
 
     <footer>
