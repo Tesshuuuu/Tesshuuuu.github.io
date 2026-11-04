@@ -53,6 +53,7 @@
     a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 2px; }
 
     header { display: flex; align-items: flex-start; gap: 20px; }
+    header > div { flex: 1; min-width: 0; }
     .portrait {
       width: 216px;
       height: 216px;
@@ -135,7 +136,7 @@
     @media (max-width: 480px) {
       main { padding-top: 48px; }
       body { font-size: 16px; }
-      .portrait { width: 152px; height: 152px; }
+      .portrait { width: 152px; height: 152px; margin-right: 8px; }
     }
   </style>
 </head>
@@ -147,7 +148,7 @@
       <!-- EDIT: add your title, e.g. "PhD student", and advisors if you like. -->
       <p class="role">University of Pennsylvania, PhD Student</p>
       <ul class="links">
-        <li><a href="mailto:ftesshu@engineering.upenn.edu">ftesshu@engineering.upenn.edu</a></li>
+        <li><a href="mailto:ftesshu@engineering.upenn.edu">ftesshu@<wbr>engineering.upenn.edu</a></li>
         <li><a href="https://scholar.google.com/citations?user=h20PWN8AAAAJ&amp;hl=ja">Google Scholar</a></li>
         <li><a href="https://github.com/Tesshuuuu">GitHub</a></li>
         <!-- EDIT: uncomment and fill in the ones you want.
